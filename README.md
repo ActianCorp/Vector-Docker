@@ -22,7 +22,7 @@ To create a new container based on this image, type:
 
 and a new container will be created, and Vector will be started. Running the container this way will show you the Vector startup log details, and then pause, requiring you to hit Ctrl-C at the end before you can log into the container. Alternatively, starting the container via:
 
-  `docker -d run --name vector actian/vector:community`
+  `docker run --name vector -d actian/vector5.0:community`
 
 with the -d for 'daemon' flag will return control to the command-line immediately, and will not print startup details onto standard out - these can be seen via Docker logs or through Kitematic instead, if needed.
 
@@ -32,7 +32,7 @@ To log into the running container, use:
 
 If you want to expose the Vector instance inside this machine to allow external access from outside the container, e.g. via Actian Director, or Tableau, or other BI tool, you need to explicitly map the ports that are exposed by the container to ports on the host machine. To do this, change the above docker run command to:
 
-  `docker run -d --name vector actian/vector:community -p 27832:27832 -p 27839:27839 -p 44223:44223 -p 16902:16902 -p 8080:8080`
+  `docker run --name vector -d actian/vector5.0:community -p 27832:27832 -p 27839:27839 -p 44223:44223 -p 16902:16902 -p 8080:8080`
 
 if you want to allow access via ODBC, JDBC, .Net, Ingres/Net, and Actian Director.
 
