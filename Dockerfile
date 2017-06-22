@@ -51,7 +51,7 @@ RUN ln -s $II_SYSTEM/ingres/utility/dockerctl /usr/local/bin/dockerctl
 
 # Allow external connections
 # NOTE: these are instance ID dependent (II_INSTALLATION)
-EXPOSE 27832 27839 44223 16902 8080
+EXPOSE 27832 27839 44223 16902
 
 # Give the actian user a database password to allow for access from outside the container
 # Only uncomment this line if you want to allow this
