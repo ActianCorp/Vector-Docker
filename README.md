@@ -32,7 +32,7 @@ To log into the running container, use:
 
 If you want to expose the Vector instance inside this machine to allow external access from outside the container, e.g. via Actian Director, or Tableau, or other BI tool, you need to explicitly map the ports that are exposed by the container to ports on the host machine. To do this, change the above docker run command to:
 
-  `docker run --name vector -d actian/vector5.0:community -p 27832:27832 -p 27839:27839 -p 44223:44223 -p 16902:16902 -p 8080:8080`
+  `docker run --name vector -d actian/vector5.0:community -p 27832:27832 -p 27839:27839 -p 44223:44223 -p 16902:16902`
 
 if you want to allow access via ODBC, JDBC, .Net, Ingres/Net, and Actian Director.
 
