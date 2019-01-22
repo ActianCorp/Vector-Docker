@@ -10,7 +10,7 @@ if you haven't already done so, download and install Docker and Kitematic (optio
 
 From a command prompt in this folder (e.g. Shift-Right click the folder name in Windows and select 'Command Prompt Here'), run the following command:
 
-  `docker build -t actian/vector5.0:community .`
+  `docker build -t actian/vector5.0:community . --squash`
 
 which will download a minimal Centos 7 machine image, then install Actian Vector into this. If all goes well, a new image will be created which you can see via
 
