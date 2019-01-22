@@ -55,7 +55,11 @@ EXPOSE 27832 27839 44223 16902
 
 # Give the actian user a database password to allow for access from outside the container
 # Only uncomment this line if you want to allow this
-# RUN sudo su - actian -c 'echo "alter user actian with password =actian;commit;\\p\\g" | sql iidbdb'
+# An alternative, and more secure technique is to do this after the image is created and commit the resulting container. 
+# That way, the real password isn't embedded in a Dockerfile
+# 	docker exec -u actian -it vector bash -i -c 'echo "alter user actian with password =actian;commit;\\p\\g"|sql iidbdb'
+#	docker commit vector actian/vector5.0:latest
+# RUN sudo su - actian -c 'ingstart >/tmp/ingstart.out;echo "alter user actian with password =actian;commit;\\p\\g" | sql iidbdb>/tmp/pw.out;ingstop -force >/tmp/ingstop.out||true'
 
 # Allow external locations - uncomment to make these available for use
 # Data
