@@ -20,18 +20,17 @@
 #   3. Copy the Vector *.tgz file you downloaded to the same location as this Dockerfile
 
 FROM centos:7
-# Docker file for Actian Vector 5.0 Community Edition
+# Docker file for Actian Vector Community Edition
 LABEL com.actian.vendor="Actian Corporation" \
-      version=5.0 \
-      description="Actian Vector 5.0 Community Edition" \
+      description="Actian Vector Community Edition" \
       maintainer=jeremy.hankinson@actian.com
-#TAG actian vector v5 community
+#TAG actian vector community
 
 # Pull dependencies
 RUN yum install -y libaio util-linux-ng sudo
 
 # This Dockerfile will work with any community linux version that follows this naming convention
-ENV VECTOR_ARCHIVE actian-vector-*-community-linux-x86_64
+ENV VECTOR_ARCHIVE actian-vector-*-community-linux-x86_64*
 ENV II_SYSTEM /VectorVW
 
 # Pull in Vector saveset
@@ -58,7 +57,7 @@ EXPOSE 27832 27839 44223 16902
 # An alternative, and more secure technique is to do this after the image is created and commit the resulting container. 
 # That way, the real password isn't embedded in a Dockerfile
 # 	docker exec -u actian -it vector bash -i -c 'echo "alter user actian with password =actian;commit;\\p\\g"|sql iidbdb'
-#	docker commit vector actian/vector5.0:latest
+#	docker commit vector actian/vector:latest
 # RUN sudo su - actian -c 'ingstart >/tmp/ingstart.out;echo "alter user actian with password =actian;commit;\\p\\g" | sql iidbdb>/tmp/pw.out;ingstop -force >/tmp/ingstop.out||true'
 
 # Allow external locations - uncomment to make these available for use
