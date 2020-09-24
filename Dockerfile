@@ -44,10 +44,12 @@ RUN cd $VECTOR_ARCHIVE && ./install.sh -express $II_SYSTEM VW -noad && hostname 
 RUN cp $II_SYSTEM/ingres/.ingVWsh /etc/profile.d/vectorVW.sh
 
 # fix hostname as localhost
-RUN source /etc/profile.d/vectorVW.sh && sed -i -e "s,`cat /tmp/hostname.build`,localhost," $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
+RUN source /etc/profile.d/vectorVW.sh && sed -isaved -e "s,`cat /tmp/hostname.build`,localhost," -e 's/mgmtsvr:.*/mgmtsvr: 0/' $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
 
 # Install Vector control script
 RUN ln -s $II_SYSTEM/ingres/utility/dockerctl /usr/local/bin/dockerctl
+
+RUN rm -fr $VECTOR_ARCHIVE
 
 # Allow external connections
 # NOTE: these are instance ID dependent (II_INSTALLATION)
@@ -58,7 +60,7 @@ EXPOSE 27832 27839 44223 16902
 # An alternative, and more secure technique is to do this after the image is created and commit the resulting container.
 # That way, the real password isn't embedded in a Dockerfile
 #       docker exec -u actian -it vector bash -i -c 'echo "alter user actian with password =actian;commit;\\p\\g"|sql iidbdb'
-#       docker commit vector actian/vector:latest
+#       docker commit vector actian/vector:community
 # RUN sudo su - actian -c 'ingstart >/tmp/ingstart.out;echo "alter user actian with password =actian;commit;\\p\\g" | sql iidbdb>/tmp/pw.out;ingstop -force >/tmp/ingstop.out||true'
 
 # Allow external locations - uncomment to make these available for use
