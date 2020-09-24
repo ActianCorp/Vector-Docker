@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  vector:
+    image: actian/vector
+    hostname: vector
+    build: . 
+    container_name: vector
+    restart: always
+    volumes:
+      - data:/VectorVW/ingres/data
+      - ckp:/VectorVW/ingres/ckp
+      - jnl:/VectorVW/ingres/jnl
+      - log:/VectorVW/ingres/log
+    ports:
+      - 27832:27832
+      - 27839:27839
+      - 44223:44223
+      - 16902:16902
+
+volumes:
+  data:
+  ckp:
+  jnl:
+  log:
