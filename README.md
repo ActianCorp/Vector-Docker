@@ -26,6 +26,8 @@ and a new container will be created, and Vector will be started. Running the con
 
 with the -d for 'daemon' flag will return control to the command-line immediately, and will not print startup details onto standard out - these can be seen via Docker logs or through Kitematic instead, if needed.
 
+Also provided here is a Docker "Compose" file which can simplify build and running of Vector Community images
+
 To log into the running container, use:
 
 	`docker exec -it vector bash`
