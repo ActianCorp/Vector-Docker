@@ -44,7 +44,7 @@ RUN cd $VECTOR_ARCHIVE && ./install.sh -express $II_SYSTEM VW -noad && hostname 
 RUN cp $II_SYSTEM/ingres/.ingVWsh /etc/profile.d/vectorVW.sh
 
 # fix hostname as localhost
-RUN source /etc/profile.d/vectorVW.sh && sed -i -e "s,`cat /tmp/hostname.build`,localhost," $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
+RUN source /etc/profile.d/vectorVW.sh && sed -i -e "s,`cat /tmp/hostname.build`,localhost,gI" $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
 
 # Install Vector control script
 RUN ln -s $II_SYSTEM/ingres/utility/dockerctl /usr/local/bin/dockerctl
