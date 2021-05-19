@@ -31,7 +31,7 @@ LABEL com.actian.vendor="Actian Corporation" \
 RUN yum install -y libaio util-linux-ng sudo
 
 # This Dockerfile will work with any community linux version that follows this naming convention
-ENV VECTOR_ARCHIVE actian-vector-*-community-linux-x86_64*
+ENV VECTOR_ARCHIVE actian-vector-*linux*x86_64*
 ENV II_SYSTEM /VectorVW
 
 # Pull in Vector saveset
