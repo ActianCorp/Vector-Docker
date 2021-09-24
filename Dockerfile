@@ -17,7 +17,7 @@
 #-------------------------------------------------------------------------------
 # Pre-requisites required before using this Dockerfile:
 #   1. An installed and working Docker/Moby
-#   2. Get *.tgz file of licensed Vector or register for and download Actian Vector Community Edition
+#   2. Get *.tgz file of licensed Vector
 #   3. Copy the Vector *.tgz file to the same location as this Dockerfile
 
 FROM centos:7

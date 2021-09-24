@@ -2,7 +2,7 @@
 
 This Dockerfile will build a Docker image from a supplied version of Actian Vector.
 
-If you do not own a licensed Vector (as saveset *.tgz file), register and download the Actian Vector Community Edition installation file from https://www.actian.com/lp/vector-community-edition/, then create a work folder, and copy the .tgz file into that location.
+Get a saveset *.tgz file of your licensed Vector, then create a work folder, and copy the .tgz file into that location.
 
 Next, get a copy of this Dockerfile and README from Github and copy those into the same location.
 
