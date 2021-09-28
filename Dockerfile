@@ -1,4 +1,4 @@
-## -*- docker-image-name: "actian/vector:community" -*-
+## -*- docker-image-name: "actian/vector:latest" -*-
 #-------------------------------------------------------------------------------
 
 # Copyright 2017 Actian Corporation
@@ -17,20 +17,20 @@
 #-------------------------------------------------------------------------------
 # Pre-requisites required before using this Dockerfile:
 #   1. An installed and working Docker/Moby
-#   2. Register for and download Actian Vector Community Edition
-#   3. Copy the Vector *.tgz file you downloaded to the same location as this Dockerfile
+#   2. Get *.tgz file of licensed Vector
+#   3. Copy the Vector *.tgz file to the same location as this Dockerfile
 
 FROM centos:7
-# Docker file for Actian Vector Community Edition
+# Docker file for Actian Vector
 LABEL com.actian.vendor="Actian Corporation" \
-      description="Actian Vector Community Edition" \
+      description="Actian Vector" \
       maintainer=jeremy.hankinson@actian.com
-#TAG actian vector community
+#TAG actian vector
 
 # Pull dependencies
 RUN yum install -y libaio util-linux-ng sudo
 
-# This Dockerfile will work with any community linux version that follows this naming convention
+# This Dockerfile will work with any linux version that follows this naming convention
 ENV VECTOR_ARCHIVE actian-vector-*linux*x86_64*
 ENV II_SYSTEM /VectorVW
 
@@ -60,7 +60,7 @@ EXPOSE 27832 27839 44223 16902
 # An alternative, and more secure technique is to do this after the image is created and commit the resulting container.
 # That way, the real password isn't embedded in a Dockerfile
 #       docker exec -u actian -it vector bash -i -c 'echo "alter user actian with password =actian;commit;\\p\\g"|sql iidbdb'
-#       docker commit vector actian/vector:community
+#       docker commit vector actian/vector:latest
 # RUN sudo su - actian -c 'ingstart >/tmp/ingstart.out;echo "alter user actian with password =actian;commit;\\p\\g" | sql iidbdb>/tmp/pw.out;ingstop -force >/tmp/ingstop.out||true'
 
 # Allow external locations - uncomment to make these available for use
