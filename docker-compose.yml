@@ -2,7 +2,7 @@ version: '3'
 
 services:
   vector:
-    image: actian/vector:community
+    image: actian/vector:latest
     hostname: vector
     build: . 
     container_name: vector
