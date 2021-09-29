@@ -31,7 +31,7 @@ LABEL com.actian.vendor="Actian Corporation" \
 RUN yum install -y libaio util-linux-ng sudo
 
 # This Dockerfile will work with any linux version that follows this naming convention
-ENV VECTOR_ARCHIVE actian-vector-*-linux-x86_64*
+ENV VECTOR_ARCHIVE actian-vector-*linux*x86_64*
 ENV II_SYSTEM /VectorVW
 
 # Pull in Vector saveset
@@ -44,10 +44,12 @@ RUN cd $VECTOR_ARCHIVE && ./install.sh -express $II_SYSTEM VW -noad && hostname 
 RUN cp $II_SYSTEM/ingres/.ingVWsh /etc/profile.d/vectorVW.sh
 
 # fix hostname as localhost
-RUN source /etc/profile.d/vectorVW.sh && sed -i -e "s,`cat /tmp/hostname.build`,localhost,gI" $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
+RUN source /etc/profile.d/vectorVW.sh && sed -isaved -e "s,`cat /tmp/hostname.build`,localhost,gI" -e 's/mgmtsvr:.*/mgmtsvr: 0/' $II_SYSTEM/ingres/files/config.dat && ingsetenv II_HOSTNAME localhost
 
 # Install Vector control script
 RUN ln -s $II_SYSTEM/ingres/utility/dockerctl /usr/local/bin/dockerctl
+
+RUN rm -fr $VECTOR_ARCHIVE
 
 # Allow external connections
 # NOTE: these are instance ID dependent (II_INSTALLATION)
